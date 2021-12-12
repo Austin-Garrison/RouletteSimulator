@@ -61,7 +61,6 @@ public class LoginController {
                     passwordTxt = data[1];
             
                     if (userTxt.equals(username) && passwordTxt.equals(passwordField.getText())){
-                      //System.out.println("login successful");
                       validLogin = true;
                     }
                     else {
@@ -69,7 +68,6 @@ public class LoginController {
                     }
                     
                     if (count == totalUsers) {
-                      //System.out.println("login failed");
                       validLogin = false;
                     }
                   }
