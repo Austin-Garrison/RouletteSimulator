@@ -37,6 +37,7 @@ public class LoginController {
     private void checkLogin() throws IOException {
         App app = new App();
         String username = usernameField.getText();
+        AccountsManager accountsManager = AccountsManager.getInstance();
 
         if(username.isEmpty()) {
             usernameField.setPromptText("Enter a username");
@@ -46,6 +47,8 @@ public class LoginController {
         }
 
         if(!username.isEmpty() && !passwordField.getText().isBlank()) {
+          App.player = accountsManager.loadPlayer(username);
+
             try {
                 Scanner file = new Scanner (new File(INPUT_FILE));
                 String userTxt, passwordTxt, line;
