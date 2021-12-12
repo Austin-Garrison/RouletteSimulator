@@ -38,7 +38,7 @@ public class RouletteWheelControl  extends VBox {
     private int lastNumber =-1;
 
     public RouletteWheelControl() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("roulette-wheel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("roulette-wheel-control.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -60,7 +60,9 @@ public class RouletteWheelControl  extends VBox {
         rt.setAxis(Rotate.Z_AXIS);
         rt.setOnFinished((actionEvent-> {
             System.out.println("Finished spinning wheel.");
+            System.out.println(this.lastNumber);
             buttonSpin.setText("" + this.lastNumber);
+            App.spinList().add(this.lastNumber);
 
             PauseTransition wait = new PauseTransition(Duration.seconds(2));
             wait.setOnFinished((e) -> {
@@ -109,7 +111,6 @@ public class RouletteWheelControl  extends VBox {
     private int getRandomNum(int min, int max) {
         int number = (int)(Math.random()*(max - min) + min);
         this.lastNumber = number;
-        System.out.println(number);
         return numberToAngle(number);
     }
 
